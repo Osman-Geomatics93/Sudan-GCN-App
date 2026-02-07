@@ -729,13 +729,7 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 If you find this project useful, please consider giving it a star — it helps others discover it!
 
-<a href="https://star-history.com/#Osman-Geomatics93/Sudan-GCN-App&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Osman-Geomatics93/Sudan-GCN-App&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Osman-Geomatics93/Sudan-GCN-App&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Osman-Geomatics93/Sudan-GCN-App&type=Date" width="600" />
-  </picture>
-</a>
+[![Star History Chart](https://api.star-history.com/svg?repos=Osman-Geomatics93/Sudan-GCN-App&type=date&legend=top-left)](https://www.star-history.com/#Osman-Geomatics93/Sudan-GCN-App&type=date&legend=top-left)
 
 </div>
 
