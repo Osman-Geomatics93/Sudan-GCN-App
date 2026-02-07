@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deploy Sudan GCN as GEE App — Step by Step</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, 'Segoe UI', sans-serif; background: #F5F7FA; color: #1a1a1a; line-height: 1.7; }
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
+  h1 { font-size: 28px; margin-bottom: 8px; color: #023E8A; }
+  .subtitle { color: #666; font-size: 15px; margin-bottom: 32px; }
+  
+  .step { background: #fff; border: 1px solid #e0e0e0; padding: 24px; margin-bottom: 20px; position: relative; }
+  .step-num { position: absolute; top: -14px; left: 20px; background: #0077B6; color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+  .step h2 { font-size: 18px; margin-bottom: 8px; color: #023E8A; }
+  .step p { font-size: 14px; color: #444; margin-bottom: 12px; }
+  
+  .action { background: #E3F2FD; padding: 12px 16px; margin: 10px 0; font-size: 14px; border-left: 4px solid #0077B6; }
+  .action strong { color: #023E8A; }
+  
+  .warn { background: #FFF8E1; padding: 12px 16px; margin: 10px 0; font-size: 14px; border-left: 4px solid #F9A825; }
+  .success { background: #E8F5E9; padding: 12px 16px; margin: 10px 0; font-size: 14px; border-left: 4px solid #2E7D32; }
+  .danger { background: #FFEBEE; padding: 12px 16px; margin: 10px 0; font-size: 14px; border-left: 4px solid #C62828; }
+  
+  code { background: #f0f0f0; padding: 2px 8px; font-family: 'Courier New', monospace; font-size: 13px; color: #C62828; }
+  .code-block { background: #263238; color: #ECEFF1; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; overflow-x: auto; margin: 10px 0; white-space: pre-wrap; }
+  
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+  th { background: #E3F2FD; padding: 10px 12px; text-align: left; font-weight: 600; border: 1px solid #ddd; }
+  td { padding: 10px 12px; border: 1px solid #ddd; }
+  
+  .changes { margin-top: 32px; }
+  .changes h2 { color: #023E8A; margin-bottom: 12px; }
+  .changes ul { margin-left: 20px; }
+  .changes li { margin-bottom: 6px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🚀 Deploy Sudan GCN as a GEE App</h1>
+<p class="subtitle">Step-by-step guide to publish your Curve Number application as a public Google Earth Engine App on <code>cloud/ee-osmangeomatics1993</code></p>
+
+<!-- STEP 1 -->
+<div class="step">
+  <div class="step-num">1</div>
+  <h2>Save the App Script</h2>
+  <p>First, save the App-ready script to your GEE repository.</p>
+  <div class="action">
+    <strong>Action:</strong> Open <a href="https://code.earthengine.google.com" target="_blank">code.earthengine.google.com</a>
+  </div>
+  <div class="action">
+    <strong>Action:</strong> In the script panel, delete all existing code
+  </div>
+  <div class="action">
+    <strong>Action:</strong> Paste the entire contents of <code>Sudan_GCN_APP.js</code>
+  </div>
+  <div class="action">
+    <strong>Action:</strong> Click <strong>Save</strong> (top menu) → Name it:<br>
+    <code>Sudan_Hydrologic_CN_App</code><br>
+    Save to your repository (e.g., <code>users/osmangeomatics1993/</code>)
+  </div>
+  <div class="warn">
+    ⚠️ <strong>Important:</strong> Use the <code>Sudan_GCN_APP.js</code> file (NOT the <code>Sudan_GCN_v4_Modern.js</code>). The APP version has <code>print()</code> and <code>Export.image.toDrive()</code> removed because they don't work in GEE Apps.
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+  <div class="step-num">2</div>
+  <h2>Test the Script First</h2>
+  <p>Before publishing, run the script to make sure everything works.</p>
+  <div class="action">
+    <strong>Action:</strong> Click <strong>▶ Run</strong>
+  </div>
+  <p>Verify these work correctly:</p>
+  <table>
+    <tr><th>Test</th><th>Expected Result</th></tr>
+    <tr><td>Map loads CN Average layer</td><td>Full Sudan in green-yellow-red colors</td></tr>
+    <tr><td>State dropdown populated</td><td>18 Sudan states listed</td></tr>
+    <tr><td>Select "Khartoum" → Apply State</td><td>Map zooms to Khartoum State</td></tr>
+    <tr><td>Click on map</td><td>Point query shows CN + State + Locality</td></tr>
+    <tr><td>Legend appears</td><td>Color bar with labels below layer selector</td></tr>
+    <tr><td>Change layer to "Land Cover"</td><td>Legend updates to categorical classes</td></tr>
+    <tr><td>Draw rectangle → Apply</td><td>Map clips to drawn area</td></tr>
+    <tr><td>Generate Download Link</td><td>Blue download URL appears</td></tr>
+  </table>
+  <div class="success">
+    ✅ If all tests pass, proceed to Step 3.
+  </div>
+  <div class="danger">
+    ❌ If there are errors, check the Console tab for red error messages and fix before publishing.
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <div class="step-num">3</div>
+  <h2>Open the App Manager</h2>
+  <div class="action">
+    <strong>Action:</strong> In the Code Editor, click the <strong>Apps</strong> button (top-right, near your profile icon)
+  </div>
+  <div class="action">
+    <strong>Action:</strong> This opens the "Manage Apps" dialog you showed in your screenshot
+  </div>
+  <p>You should see your existing cloud project: <code>cloud/ee-osmangeomatics1993</code></p>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+  <div class="step-num">4</div>
+  <h2>Create New App</h2>
+  <div class="action">
+    <strong>Action:</strong> Click the blue <strong>NEW APP</strong> button (top-right of the Manage Apps dialog)
+  </div>
+  <p>A "New App" form will appear with these fields:</p>
+  <table>
+    <tr><th>Field</th><th>What to Enter</th></tr>
+    <tr>
+      <td><strong>App Name</strong></td>
+      <td><code>Sudan Hydrologic Curve Number Application</code></td>
+    </tr>
+    <tr>
+      <td><strong>Project</strong></td>
+      <td>Select: <code>cloud/ee-osmangeomatics1993</code></td>
+    </tr>
+    <tr>
+      <td><strong>App ID (auto-generated)</strong></td>
+      <td>Will auto-fill something like:<br><code>cloud/ee-osmangeomatics1993/sudan-hydrologic-curve-number-application</code><br>You can edit the slug if you want a shorter URL</td>
+    </tr>
+    <tr>
+      <td><strong>Source Code</strong></td>
+      <td>Should automatically point to your currently open script<br>If not, browse to: <code>users/osmangeomatics1993/Sudan_Hydrologic_CN_App</code></td>
+    </tr>
+  </table>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+  <div class="step-num">5</div>
+  <h2>Configure App Settings</h2>
+  <table>
+    <tr><th>Setting</th><th>Recommended Value</th></tr>
+    <tr>
+      <td><strong>Access</strong></td>
+      <td>Select: <strong>"Anyone with the link"</strong> (for public research access)<br>
+          Or: <strong>"Anyone"</strong> (to appear in the GEE App Gallery)</td>
+    </tr>
+    <tr>
+      <td><strong>Earth Engine App Visibility</strong></td>
+      <td>Check <strong>"Show in Gallery"</strong> if you want public discovery</td>
+    </tr>
+  </table>
+  <div class="warn">
+    ⚠️ <strong>Google Account required:</strong> Users must have a GEE account to run the app. For fully public access (no login), consider the "Anyone" option, but note GEE still requires authentication for heavy computation.
+  </div>
+</div>
+
+<!-- STEP 6 -->
+<div class="step">
+  <div class="step-num">6</div>
+  <h2>Publish the App</h2>
+  <div class="action">
+    <strong>Action:</strong> Click <strong>PUBLISH</strong>
+  </div>
+  <p>After publishing, you'll get your app URL:</p>
+  <div class="code-block">https://ee-osmangeomatics1993.projects.earthengine.app/view/sudan-hydrologic-curve-number-application</div>
+  <div class="success">
+    ✅ <strong>Your app is now live!</strong> Share this URL with researchers, students, and agencies.
+  </div>
+</div>
+
+<!-- STEP 7 -->
+<div class="step">
+  <div class="step-num">7</div>
+  <h2>Test the Published App</h2>
+  <p>Open the URL in a new browser tab (or incognito window) and verify:</p>
+  <table>
+    <tr><th>#</th><th>Test</th><th>Pass?</th></tr>
+    <tr><td>1</td><td>App loads and shows CN Average map</td><td>☐</td></tr>
+    <tr><td>2</td><td>Left panel visible with all sections</td><td>☐</td></tr>
+    <tr><td>3</td><td>State dropdown shows 18 states</td><td>☐</td></tr>
+    <tr><td>4</td><td>Selecting state → map zooms and clips</td><td>☐</td></tr>
+    <tr><td>5</td><td>Locality populates after state selected</td><td>☐</td></tr>
+    <tr><td>6</td><td>Click on map → shows query with State + Locality</td><td>☐</td></tr>
+    <tr><td>7</td><td>Legend updates when switching layers</td><td>☐</td></tr>
+    <tr><td>8</td><td>Draw tools work (rectangle/polygon/point)</td><td>☐</td></tr>
+    <tr><td>9</td><td>Runoff calculator produces results</td><td>☐</td></tr>
+    <tr><td>10</td><td>GPM rainfall fetches and displays</td><td>☐</td></tr>
+    <tr><td>11</td><td>Download link generates for selected product</td><td>☐</td></tr>
+    <tr><td>12</td><td>Reset to Full Sudan works</td><td>☐</td></tr>
+  </table>
+</div>
+
+<!-- STEP 8 -->
+<div class="step">
+  <div class="step-num">8</div>
+  <h2>Update the App (Future Changes)</h2>
+  <p>To update your app after making code changes:</p>
+  <div class="action">
+    <strong>Action:</strong> Edit and save the script in Code Editor
+  </div>
+  <div class="action">
+    <strong>Action:</strong> Open Apps manager → find your app → click the <strong>pencil icon ✏️</strong> next to the App ID
+  </div>
+  <div class="action">
+    <strong>Action:</strong> Click <strong>UPDATE</strong> (or <strong>PUBLISH</strong> again)
+  </div>
+  <p>The URL stays the same — users always see the latest version.</p>
+</div>
+
+<!-- CHANGES -->
+<div class="changes">
+  <h2>🔧 What Changed from Code Editor Version → App Version</h2>
+  <table>
+    <tr><th>Feature</th><th>Code Editor (v4_Modern.js)</th><th>App (Sudan_GCN_APP.js)</th></tr>
+    <tr><td><code>print()</code></td><td>Console messages</td><td>❌ Removed (not available in Apps). Welcome message shown in result panel instead.</td></tr>
+    <tr><td><code>Export.image.toDrive()</code></td><td>5 export tasks to Google Drive</td><td>❌ Replaced with <code>getDownloadURL()</code> — generates direct download links for GeoTIFF files. User selects product + scale.</td></tr>
+    <tr><td>Download</td><td>Tasks tab required</td><td>✅ Direct download link in the panel. User clicks link → browser downloads GeoTIFF.</td></tr>
+    <tr><td>Scale selection</td><td>Fixed 250m</td><td>✅ User can choose 250m / 500m / 1000m / 5000m (smaller scale = faster for large AOIs).</td></tr>
+    <tr><td>All other features</td><td colspan="2">Identical: State/Locality, Draw, Asset, 12 layers, Legend, Runoff, GPM, Click query, Statistics</td></tr>
+  </table>
+</div>
+
+<div style="margin-top:32px; padding:16px; background:#E3F2FD; border-left:4px solid #0077B6; font-size:14px;">
+  <strong>💡 Pro Tip:</strong> Keep both script versions. Use <code>Sudan_GCN_v4_Modern.js</code> for your own research (with Export to Drive), and <code>Sudan_GCN_APP.js</code> for the published App (with download links).
+</div>
+
+</div>
+</body>
+</html>

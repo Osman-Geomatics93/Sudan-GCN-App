@@ -1,0 +1,50 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Node (if any tooling is added later)
+node_modules/
+package-lock.json
+npm-debug.log
+
+# Python (if any tooling is added later)
+__pycache__/
+*.pyc
+.env
+.venv/
+
+# Temp files
+*.tmp
+*.bak
+*.log
+
+# GIS data (too large for Git)
+*.tif
+*.tiff
+*.shp
+*.shx
+*.dbf
+*.prj
+*.geojson
+!assets/*.geojson
+
+# Compressed
+*.zip
+*.tar.gz
+*.7z
+
+# Credentials (never commit)
+*.json
+!package.json
+service-account-key.json
+credentials.json
