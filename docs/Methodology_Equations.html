@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudan GCN — Scientific Methodology & Equations</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+  :root {
+    --primary: #023E8A;
+    --secondary: #0077B6;
+    --accent: #00B4D8;
+    --success: #2A9D8F;
+    --warning: #E9C46A;
+    --danger: #E76F51;
+    --bg: #FAFBFC;
+    --card: #FFFFFF;
+    --text: #1A2332;
+    --muted: #5A6B7D;
+    --border: #E2E8F0;
+    --code-bg: #F1F5F9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.8; font-size: 16px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #023E8A 0%, #0077B6 50%, #00B4D8 100%);
+    color: white; padding: 60px 24px 50px; text-align: center;
+  }
+  .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.5px; }
+  .hero .subtitle { font-size: 18px; opacity: 0.9; max-width: 700px; margin: 0 auto 24px; }
+  .hero .badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .hero .badge {
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 16px; font-size: 13px; font-weight: 600;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 28px 32px; margin: -30px auto 40px; max-width: 900px;
+    position: relative; z-index: 10;
+  }
+  .toc h2 { font-size: 18px; color: var(--primary); margin-bottom: 14px; }
+  .toc ol { list-style: none; counter-reset: toc; columns: 2; column-gap: 40px; }
+  .toc li { counter-increment: toc; margin-bottom: 8px; }
+  .toc li::before {
+    content: counter(toc, decimal-leading-zero);
+    color: var(--accent); font-weight: 700; margin-right: 10px; font-size: 14px;
+  }
+  .toc a { color: var(--text); text-decoration: none; font-size: 14px; }
+  .toc a:hover { color: var(--secondary); text-decoration: underline; }
+
+  /* ── SECTIONS ── */
+  .section { margin-top: 50px; }
+  .section-num {
+    font-size: 12px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px;
+  }
+  .section h2 {
+    font-size: 26px; font-weight: 800; color: var(--primary);
+    border-bottom: 3px solid var(--accent); padding-bottom: 10px; margin-bottom: 20px;
+  }
+  .section h3 { font-size: 18px; font-weight: 700; color: var(--secondary); margin: 28px 0 12px; }
+
+  /* ── EQUATION BOX ── */
+  .eq-box {
+    background: linear-gradient(135deg, #F8FAFF 0%, #EEF2FF 100%);
+    border: 1px solid #C7D2FE; border-left: 4px solid var(--secondary);
+    padding: 24px 28px; margin: 20px 0; overflow-x: auto;
+  }
+  .eq-box .eq-label {
+    font-size: 11px; font-weight: 700; color: var(--secondary);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
+  }
+  .eq-box .eq-num {
+    float: right; font-size: 13px; color: var(--muted); font-weight: 600;
+  }
+
+  /* ── VARIABLE TABLE ── */
+  .var-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+  .var-table th {
+    background: var(--primary); color: white;
+    padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .var-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .var-table tr:nth-child(even) { background: #F8FAFC; }
+  .var-table code {
+    background: var(--code-bg); padding: 2px 8px; font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 13px; color: var(--danger);
+  }
+
+  /* ── CN LOOKUP TABLE ── */
+  .cn-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; text-align: center; }
+  .cn-table th { background: var(--primary); color: white; padding: 8px 10px; font-weight: 600; font-size: 11px; }
+  .cn-table td { padding: 8px 10px; border: 1px solid var(--border); }
+  .cn-table tr:nth-child(even) { background: #F8FAFC; }
+  .cn-table .hsg-a { background: #DBEAFE; font-weight: 600; }
+  .cn-table .hsg-b { background: #E0F2FE; font-weight: 600; }
+  .cn-table .hsg-c { background: #FEF3C7; font-weight: 600; }
+  .cn-table .hsg-d { background: #FEE2E2; font-weight: 600; }
+
+  /* ── INFO / NOTE BOXES ── */
+  .note {
+    padding: 16px 20px; margin: 16px 0; font-size: 14px;
+    border-left: 4px solid; display: flex; align-items: flex-start; gap: 12px;
+  }
+  .note-info { background: #EFF6FF; border-color: #3B82F6; }
+  .note-warn { background: #FFFBEB; border-color: #F59E0B; }
+  .note-success { background: #ECFDF5; border-color: #10B981; }
+  .note .icon { font-size: 20px; flex-shrink: 0; }
+
+  /* ── FLOWCHART ── */
+  .flowchart {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; flex-wrap: wrap; margin: 24px 0; padding: 20px;
+    background: #F8FAFC; border: 1px solid var(--border);
+  }
+  .flow-step {
+    background: var(--card); border: 2px solid var(--secondary);
+    padding: 12px 18px; text-align: center; font-size: 12px; font-weight: 600;
+    min-width: 120px;
+  }
+  .flow-arrow { font-size: 22px; color: var(--accent); padding: 0 6px; font-weight: 800; }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: #1E293B; color: #E2E8F0; padding: 20px 24px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 13px; overflow-x: auto; margin: 16px 0; line-height: 1.6;
+  }
+  .code-block .comment { color: #64748B; }
+  .code-block .keyword { color: #7DD3FC; }
+  .code-block .func { color: #A78BFA; }
+  .code-block .num { color: #FCA5A5; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center; padding: 40px 24px; margin-top: 60px;
+    border-top: 2px solid var(--border); color: var(--muted); font-size: 13px;
+  }
+  .footer a { color: var(--secondary); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 24px; }
+    .toc ol { columns: 1; }
+    .flowchart { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════ HERO ════════════ -->
+<div class="hero">
+  <h1>Scientific Methodology & Equations</h1>
+  <p class="subtitle">
+    Sudan Improved Hydrologic Curve Number Application<br>
+    Complete mathematical framework for rainfall-runoff modeling
+  </p>
+  <div class="badges">
+    <span class="badge">GCN250 Framework</span>
+    <span class="badge">SCS-CN Method</span>
+    <span class="badge">5 CN Products</span>
+    <span class="badge">Flood Risk Index</span>
+  </div>
+</div>
+
+<!-- ════════════ TOC ════════════ -->
+<div class="toc container">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#s1">Processing Pipeline Overview</a></li>
+    <li><a href="#s2">Hydrologic Soil Group Classification</a></li>
+    <li><a href="#s3">Curve Number Lookup Table</a></li>
+    <li><a href="#s4">CN for Antecedent Runoff Conditions</a></li>
+    <li><a href="#s5">Slope Adjustment (Sharpley-Williams)</a></li>
+    <li><a href="#s6">Seasonal NDVI Adjustment</a></li>
+    <li><a href="#s7">SCS-CN Runoff Equation</a></li>
+    <li><a href="#s8">NASA GPM Rainfall Processing</a></li>
+    <li><a href="#s9">Flood Risk Composite Index</a></li>
+    <li><a href="#s10">Statistical Analysis & Validation</a></li>
+  </ol>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 1: PIPELINE                        -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s1">
+  <div class="section-num">Section 01</div>
+  <h2>Processing Pipeline Overview</h2>
+  <p>The application follows the GCN250 framework (Jaafar et al., 2019) enhanced with slope and vegetation corrections. The complete processing chain:</p>
+
+  <div class="flowchart">
+    <div class="flow-step">ESA WorldCover<br><small>10 m → 250 m</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">USDA Land<br>Use Classes</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color: var(--success);">CN Lookup<br>Table</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">CN<sub>avg</sub><br>(ARC II)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color: var(--danger);">5 CN<br>Products</div>
+  </div>
+  <div class="flowchart">
+    <div class="flow-step">SoilGrids<br><small>Clay &amp; Sand %</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">HSG<br>A / B / C / D</div>
+    <div class="flow-arrow">↗</div>
+    <div class="flow-step">SRTM Slope<br><small>30 m</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Slope<br>Correction</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">MODIS NDVI<br><small>Seasonal</small></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 2: HSG                             -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="section-num">Section 02</div>
+  <h2>Hydrologic Soil Group Classification</h2>
+
+  <p>Hydrologic Soil Groups (HSG) classify soils by their infiltration capacity. We derive HSG from OpenLandMap SoilGrids clay and sand fractions at the surface (0 cm depth):</p>
+
+  <div class="eq-box">
+    <div class="eq-label">HSG Decision Rules <span class="eq-num">Eq. 1</span></div>
+    $$\text{HSG} = \begin{cases}
+      \textbf{A} & \text{if } \text{Sand} > 85\% \;\text{ and }\; \text{Clay} < 10\% \\[6pt]
+      \textbf{B} & \text{if } 10\% \leq \text{Clay} < 20\% \;\text{ and }\; \text{Sand} \geq 50\% \\[6pt]
+      \textbf{C} & \text{if } 20\% \leq \text{Clay} \leq 40\% \\[6pt]
+      \textbf{D} & \text{if } \text{Clay} > 40\% \\[6pt]
+      \textbf{C} & \text{otherwise (default)}
+    \end{cases}$$
+  </div>
+
+  <table class="var-table">
+    <thead>
+      <tr><th>HSG</th><th>Soil Type</th><th>Infiltration Rate</th><th>Runoff Potential</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td>Deep sand, loamy sand, sandy loam</td><td>High (&gt; 7.6 mm/hr)</td><td>Low</td></tr>
+      <tr><td><strong>B</strong></td><td>Silt loam, loam</td><td>Moderate (3.8–7.6 mm/hr)</td><td>Moderate</td></tr>
+      <tr><td><strong>C</strong></td><td>Sandy clay loam</td><td>Slow (1.3–3.8 mm/hr)</td><td>Moderately High</td></tr>
+      <tr><td><strong>D</strong></td><td>Clay, silty clay, clay loam</td><td>Very slow (&lt; 1.3 mm/hr)</td><td>High</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note note-info">
+    <span class="icon">ℹ️</span>
+    <div><strong>Source:</strong> USDA-NRCS National Engineering Handbook, Part 630, Chapter 7 — Hydrologic Soil Groups. Soil texture data from ISRIC OpenLandMap SoilGrids at 250 m resolution.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 3: CN LOOKUP TABLE                 -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="section-num">Section 03</div>
+  <h2>Curve Number Lookup Table</h2>
+
+  <p>Each pixel receives a CN value based on its <strong>land cover class</strong> (from ESA WorldCover) crossed with its <strong>Hydrologic Soil Group</strong>. The lookup table follows USDA NEH-630 Chapter 9:</p>
+
+  <div class="eq-box">
+    <div class="eq-label">CN Assignment <span class="eq-num">Eq. 2</span></div>
+    $$CN_{\text{raw}}(x) = \text{LUT}\Big[\,\text{LandCover}(x),\;\text{HSG}(x)\,\Big]$$
+  </div>
+
+  <table class="cn-table">
+    <thead>
+      <tr>
+        <th>WorldCover Class</th>
+        <th>Code</th>
+        <th class="hsg-a">HSG-A</th>
+        <th class="hsg-b">HSG-B</th>
+        <th class="hsg-c">HSG-C</th>
+        <th class="hsg-d">HSG-D</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Tree Cover</td><td>10</td><td class="hsg-a">33</td><td class="hsg-b">58</td><td class="hsg-c">72</td><td class="hsg-d">78</td></tr>
+      <tr><td>Shrubland</td><td>20</td><td class="hsg-a">42</td><td class="hsg-b">62</td><td class="hsg-c">75</td><td class="hsg-d">81</td></tr>
+      <tr><td>Grassland</td><td>30</td><td class="hsg-a">39</td><td class="hsg-b">61</td><td class="hsg-c">74</td><td class="hsg-d">80</td></tr>
+      <tr><td>Cropland</td><td>40</td><td class="hsg-a">57</td><td class="hsg-b">68</td><td class="hsg-c">75</td><td class="hsg-d">78</td></tr>
+      <tr><td>Built-up</td><td>50</td><td class="hsg-a">89</td><td class="hsg-b">92</td><td class="hsg-c">94</td><td class="hsg-d">95</td></tr>
+      <tr><td>Bare / Sparse</td><td>60</td><td class="hsg-a">77</td><td class="hsg-b">86</td><td class="hsg-c">91</td><td class="hsg-d">94</td></tr>
+      <tr><td>Water Bodies</td><td>80</td><td class="hsg-a">100</td><td class="hsg-b">100</td><td class="hsg-c">100</td><td class="hsg-d">100</td></tr>
+      <tr><td>Wetlands</td><td>90</td><td class="hsg-a">100</td><td class="hsg-b">100</td><td class="hsg-c">100</td><td class="hsg-d">100</td></tr>
+      <tr><td>Mangroves</td><td>95</td><td class="hsg-a">100</td><td class="hsg-b">100</td><td class="hsg-c">100</td><td class="hsg-d">100</td></tr>
+      <tr><td>Moss / Lichen</td><td>100</td><td class="hsg-a">49</td><td class="hsg-b">69</td><td class="hsg-c">79</td><td class="hsg-d">84</td></tr>
+    </tbody>
+  </table>
+
+  <div class="eq-box">
+    <div class="eq-label">Final Average CN (ARC II) <span class="eq-num">Eq. 3</span></div>
+    $$CN_{\text{avg}} = \sum_{g=A}^{D} \Big[\, CN_g \cdot \mathbb{1}\{\text{HSG}=g\} \,\Big], \quad CN_{\text{avg}} \in [0, 100]$$
+  </div>
+
+  <p>Where $\mathbb{1}\{\cdot\}$ is the indicator function. Pixels with $CN_{\text{avg}} \leq 0$ default to Group C values, and remaining zeros default to $CN = 80$ (bare ground assumption).</p>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 4: ARC CONDITIONS                  -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="section-num">Section 04</div>
+  <h2>CN for Antecedent Runoff Conditions</h2>
+
+  <p>The SCS method defines three <strong>Antecedent Runoff Conditions</strong> (ARC) based on 5-day antecedent rainfall and season:</p>
+
+  <table class="var-table">
+    <thead>
+      <tr><th>Condition</th><th>Description</th><th>5-Day Antecedent Rainfall</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>ARC I (Dry)</strong></td><td>Soils are dry, low runoff potential</td><td>&lt; 36 mm (growing) / &lt; 13 mm (dormant)</td></tr>
+      <tr><td><strong>ARC II (Average)</strong></td><td>Normal conditions, standard design</td><td>36–53 mm (growing) / 13–28 mm (dormant)</td></tr>
+      <tr><td><strong>ARC III (Wet)</strong></td><td>Saturated soils, high runoff potential</td><td>&gt; 53 mm (growing) / &gt; 28 mm (dormant)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>4.1 — Dry Condition: CN(I)</h3>
+
+  <div class="eq-box">
+    <div class="eq-label">Hawkins et al. (1985) — Dry CN <span class="eq-num">Eq. 4</span></div>
+    $$CN_{\text{dry}} = \frac{4.2 \cdot CN_{\text{avg}}}{10 - 0.058 \cdot CN_{\text{avg}}}$$
+  </div>
+
+  <h3>4.2 — Wet Condition: CN(III)</h3>
+
+  <div class="eq-box">
+    <div class="eq-label">Hawkins et al. (1985) — Wet CN <span class="eq-num">Eq. 5</span></div>
+    $$CN_{\text{wet}} = \frac{23 \cdot CN_{\text{avg}}}{10 + 0.13 \cdot CN_{\text{avg}}}$$
+  </div>
+
+  <div class="note note-warn">
+    <span class="icon">⚠️</span>
+    <div><strong>Clamping:</strong> All CN values are clamped to the physical range $[0, 100]$. A value of 100 indicates complete runoff (impervious surface); a value near 30 indicates high infiltration capacity.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 5: SLOPE ADJUSTMENT                -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="section-num">Section 05</div>
+  <h2>Slope Adjustment — Sharpley-Williams Equation</h2>
+
+  <p>The standard SCS-CN method was developed for moderate slopes (≤ 5%). Sudan's terrain varies from flat alluvial plains to steep mountain slopes. The <strong>Sharpley-Williams (1990)</strong> correction adjusts CN based on local slope:</p>
+
+  <div class="eq-box">
+    <div class="eq-label">Slope-Adjusted CN <span class="eq-num">Eq. 6</span></div>
+    $$CN_{\text{slope}} = \big(CN_{\text{wet}} - CN_{\text{avg}}\big) \cdot \Big[1 - 2 \cdot e^{-13.86 \cdot \tan(\alpha)}\Big] + CN_{\text{avg}}$$
+  </div>
+
+  <table class="var-table">
+    <thead><tr><th>Variable</th><th>Description</th><th>Units</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>$CN_{\text{slope}}$</td><td>Slope-adjusted Curve Number</td><td>—</td><td>Output</td></tr>
+      <tr><td>$CN_{\text{wet}}$</td><td>CN for ARC III (wet condition)</td><td>—</td><td>Eq. 5</td></tr>
+      <tr><td>$CN_{\text{avg}}$</td><td>CN for ARC II (average condition)</td><td>—</td><td>Eq. 3</td></tr>
+      <tr><td>$\alpha$</td><td>Surface slope angle</td><td>degrees</td><td>SRTM 30 m DEM</td></tr>
+      <tr><td>$\tan(\alpha)$</td><td>Slope gradient (rise/run)</td><td>m/m</td><td>Computed</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note note-info">
+    <span class="icon">📐</span>
+    <div>
+      <strong>Behavior:</strong>
+      <br>• At $\alpha = 0°$ (flat): $CN_{\text{slope}} \approx CN_{\text{avg}}$ (no correction)
+      <br>• As $\alpha$ increases: $CN_{\text{slope}} \to CN_{\text{wet}}$ (steeper slopes → more runoff)
+      <br>• The exponential term $e^{-13.86 \cdot \tan(\alpha)}$ decays rapidly, reaching ~0 at slopes > 15°
+    </div>
+  </div>
+
+  <div class="eq-box">
+    <div class="eq-label">Slope Conversion <span class="eq-num">Eq. 6a</span></div>
+    $$\tan(\alpha) = \tan\!\left(\text{slope}_{\text{degrees}} \cdot \frac{\pi}{180}\right)$$
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 6: NDVI SEASONAL                   -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="section-num">Section 06</div>
+  <h2>Seasonal NDVI Adjustment</h2>
+
+  <p>Vegetation density affects infiltration through canopy interception and root zone storage. We use <strong>MODIS MOD13A2</strong> annual mean NDVI to apply a seasonal reduction factor:</p>
+
+  <div class="eq-box">
+    <div class="eq-label">Vegetation Factor <span class="eq-num">Eq. 7</span></div>
+    $$f_{\text{veg}} = 0.15 \cdot \frac{\text{NDVI} - 0.1}{0.4}, \quad f_{\text{veg}} \in [0,\; 0.15]$$
+  </div>
+
+  <div class="eq-box">
+    <div class="eq-label">Seasonal CN <span class="eq-num">Eq. 8</span></div>
+    $$CN_{\text{seasonal}} = CN_{\text{avg}} \cdot (1 - f_{\text{veg}})$$
+  </div>
+
+  <table class="var-table">
+    <thead><tr><th>Variable</th><th>Description</th><th>Range</th></tr></thead>
+    <tbody>
+      <tr><td>$\text{NDVI}$</td><td>Annual mean Normalized Difference Vegetation Index (2023)</td><td>$[-1, 1]$</td></tr>
+      <tr><td>$f_{\text{veg}}$</td><td>Vegetation reduction factor</td><td>$[0, 0.15]$</td></tr>
+      <tr><td>$0.1$</td><td>Minimum NDVI threshold (bare soil)</td><td>—</td></tr>
+      <tr><td>$0.5$</td><td>Maximum NDVI for full effect ($0.1 + 0.4$)</td><td>—</td></tr>
+      <tr><td>$0.15$</td><td>Maximum CN reduction (15%)</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note note-success">
+    <span class="icon">🌿</span>
+    <div><strong>Interpretation:</strong> Dense vegetation ($\text{NDVI} \geq 0.5$) reduces CN by up to 15%, reflecting increased infiltration from root channels and organic matter. Bare desert ($\text{NDVI} < 0.1$) receives no reduction.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 7: RUNOFF EQUATION                 -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s7">
+  <div class="section-num">Section 07</div>
+  <h2>SCS-CN Runoff Equation</h2>
+
+  <p>The core of the SCS Curve Number method. Developed by the USDA Soil Conservation Service (now NRCS), this empirical equation estimates <strong>direct surface runoff</strong> from a rainfall event:</p>
+
+  <h3>7.1 — Potential Maximum Retention</h3>
+
+  <div class="eq-box">
+    <div class="eq-label">Maximum Soil Retention <span class="eq-num">Eq. 9</span></div>
+    $$S = \frac{25{,}400}{CN} - 254 \quad \text{(mm)}$$
+  </div>
+
+  <p>$S$ represents the maximum depth of water the soil can retain after runoff begins. Units are millimeters. The constants 25,400 and 254 come from the original inch-based formula ($S = \frac{1000}{CN} - 10$ inches) converted to metric.</p>
+
+  <h3>7.2 — Initial Abstraction</h3>
+
+  <div class="eq-box">
+    <div class="eq-label">Initial Abstraction <span class="eq-num">Eq. 10</span></div>
+    $$I_a = \lambda \cdot S = 0.2 \cdot S \quad \text{(mm)}$$
+  </div>
+
+  <p>$I_a$ accounts for water intercepted by vegetation, stored in surface depressions, and infiltrated before runoff begins. The standard $\lambda = 0.2$ is used (some recent studies suggest $\lambda = 0.05$).</p>
+
+  <h3>7.3 — Direct Runoff Depth</h3>
+
+  <div class="eq-box">
+    <div class="eq-label">SCS-CN Runoff Equation <span class="eq-num">Eq. 11</span></div>
+    $$Q = \begin{cases}
+      \displaystyle\frac{(P - I_a)^2}{(P - I_a) + S} & \text{if } P > I_a \\[12pt]
+      0 & \text{if } P \leq I_a
+    \end{cases}$$
+  </div>
+
+  <table class="var-table">
+    <thead><tr><th>Variable</th><th>Description</th><th>Units</th><th>Typical Range</th></tr></thead>
+    <tbody>
+      <tr><td>$Q$</td><td>Direct surface runoff depth</td><td>mm</td><td>$0$ to $P$</td></tr>
+      <tr><td>$P$</td><td>Total rainfall depth for the event</td><td>mm</td><td>$0$ to $200+$</td></tr>
+      <tr><td>$S$</td><td>Potential maximum retention</td><td>mm</td><td>$0$ to $\infty$</td></tr>
+      <tr><td>$I_a$</td><td>Initial abstraction</td><td>mm</td><td>$0$ to $0.2S$</td></tr>
+      <tr><td>$CN$</td><td>Curve Number (any of 5 products)</td><td>—</td><td>$30$ to $100$</td></tr>
+      <tr><td>$\lambda$</td><td>Initial abstraction ratio</td><td>—</td><td>$0.2$ (standard)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>7.4 — Runoff Coefficient</h3>
+
+  <div class="eq-box">
+    <div class="eq-label">Runoff Ratio <span class="eq-num">Eq. 12</span></div>
+    $$C_r = \frac{Q}{P} \times 100\%$$
+  </div>
+
+  <p>The runoff ratio indicates the fraction of rainfall that becomes surface runoff. Higher values mean less infiltration and higher flood risk.</p>
+
+  <h3>7.5 — Behavior by CN Value</h3>
+
+  <table class="var-table">
+    <thead><tr><th>CN</th><th>$S$ (mm)</th><th>$I_a$ (mm)</th><th>$Q$ at $P=50$ mm</th><th>Runoff Ratio</th><th>Interpretation</th></tr></thead>
+    <tbody>
+      <tr><td>40</td><td>381</td><td>76.2</td><td>0.0 mm</td><td>0%</td><td>High infiltration, no runoff at P=50</td></tr>
+      <tr><td>60</td><td>169</td><td>33.9</td><td>1.3 mm</td><td>2.6%</td><td>Low runoff</td></tr>
+      <tr><td>75</td><td>84.7</td><td>16.9</td><td>8.1 mm</td><td>16.2%</td><td>Moderate runoff</td></tr>
+      <tr><td>85</td><td>44.8</td><td>9.0</td><td>18.9 mm</td><td>37.8%</td><td>Significant runoff</td></tr>
+      <tr><td>95</td><td>13.4</td><td>2.7</td><td>35.3 mm</td><td>70.6%</td><td>Very high runoff (urban)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 8: GPM                             -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s8">
+  <div class="section-num">Section 08</div>
+  <h2>NASA GPM Rainfall Processing</h2>
+
+  <p>The app integrates <strong>NASA GPM IMERG V07</strong> (Global Precipitation Measurement) for real satellite rainfall data:</p>
+
+  <div class="eq-box">
+    <div class="eq-label">Daily Rainfall Accumulation <span class="eq-num">Eq. 13</span></div>
+    $$P_{\text{daily}}(x) = \overline{R_{\text{half-hourly}}(x)} \times 24 \quad \text{(mm/day)}$$
+  </div>
+
+  <table class="var-table">
+    <thead><tr><th>Variable</th><th>Description</th><th>Units</th></tr></thead>
+    <tbody>
+      <tr><td>$R_{\text{half-hourly}}$</td><td>GPM IMERG half-hourly precipitation rate</td><td>mm/hr</td></tr>
+      <tr><td>$\overline{R}$</td><td>Mean half-hourly rate over 24 hours (48 timesteps)</td><td>mm/hr</td></tr>
+      <tr><td>$P_{\text{daily}}$</td><td>Total daily rainfall accumulation</td><td>mm/day</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note note-info">
+    <span class="icon">🛰</span>
+    <div><strong>Dataset:</strong> NASA GPM IMERG V07 Final Run, available from 2000–present at 0.1° (~11 km) resolution. Available in GEE as <code>NASA/GPM_L3/IMERG_V07</code>. The daily rainfall is then fed into Eq. 11 to compute spatially distributed runoff.</div>
+  </div>
+
+  <div class="eq-box">
+    <div class="eq-label">GPM-Based Runoff <span class="eq-num">Eq. 14</span></div>
+    $$Q_{\text{GPM}}(x) = \text{SCS-CN}\Big(\,P_{\text{daily}}(x),\; CN_{\text{avg}}(x)\,\Big)$$
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 9: FLOOD RISK                      -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s9">
+  <div class="section-num">Section 09</div>
+  <h2>Flood Risk Composite Index</h2>
+
+  <p>The Flood Risk Index combines runoff potential, terrain susceptibility, and population exposure into a normalized composite score:</p>
+
+  <div class="eq-box">
+    <div class="eq-label">Flood Risk Index <span class="eq-num">Eq. 15</span></div>
+    $$\text{FRI} = w_1 \cdot \hat{CN} + w_2 \cdot \hat{S}_{\text{inv}} + w_3 \cdot \hat{P}_{\text{pop}}$$
+  </div>
+
+  <div class="eq-box">
+    <div class="eq-label">Component Weights <span class="eq-num">Eq. 15a</span></div>
+    $$w_1 = 0.4, \quad w_2 = 0.3, \quad w_3 = 0.3, \quad \sum w_i = 1.0$$
+  </div>
+
+  <h3>9.1 — Normalized Components</h3>
+
+  <div class="eq-box">
+    <div class="eq-label">CN Component (Runoff Potential) <span class="eq-num">Eq. 16</span></div>
+    $$\hat{CN} = \frac{CN_{\text{avg}} - 30}{70}, \quad \hat{CN} \in [0, 1]$$
+  </div>
+
+  <div class="eq-box">
+    <div class="eq-label">Slope Component (Terrain Susceptibility) <span class="eq-num">Eq. 17</span></div>
+    $$\hat{S}_{\text{inv}} = 1 - \frac{\min(\text{slope}, 30°)}{30°}, \quad \hat{S}_{\text{inv}} \in [0, 1]$$
+  </div>
+
+  <div class="eq-box">
+    <div class="eq-label">Population Component (Exposure) <span class="eq-num">Eq. 18</span></div>
+    $$\hat{P}_{\text{pop}} = \frac{\log_{10}(\max(\text{Pop}, 0) + 1)}{4}, \quad \hat{P}_{\text{pop}} \in [0, 1]$$
+  </div>
+
+  <table class="var-table">
+    <thead><tr><th>Component</th><th>Weight</th><th>Logic</th><th>Data Source</th></tr></thead>
+    <tbody>
+      <tr><td>$\hat{CN}$</td><td>40%</td><td>Higher CN → more runoff → higher risk</td><td>SCS-CN (this app)</td></tr>
+      <tr><td>$\hat{S}_{\text{inv}}$</td><td>30%</td><td>Flatter terrain → water accumulates → higher risk</td><td>USGS SRTM 30 m</td></tr>
+      <tr><td>$\hat{P}_{\text{pop}}$</td><td>30%</td><td>More people → more exposure → higher risk</td><td>WorldPop 2020</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note note-warn">
+    <span class="icon">⚠️</span>
+    <div><strong>Interpretation:</strong> FRI = 0.0 (low risk, infiltrating terrain, unpopulated). FRI = 1.0 (extreme risk, impervious surface, flat, densely populated). The inverse slope is used because flat areas accumulate water and are more flood-prone.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 10: STATISTICS                     -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="s10">
+  <div class="section-num">Section 10</div>
+  <h2>Statistical Analysis & Validation</h2>
+
+  <h3>10.1 — AOI Statistics</h3>
+
+  <div class="eq-box">
+    <div class="eq-label">Spatial Statistics <span class="eq-num">Eq. 19</span></div>
+    $$\bar{CN}_{\text{AOI}} = \frac{1}{N}\sum_{i=1}^{N} CN(x_i)$$
+    $$\sigma_{CN} = \sqrt{\frac{1}{N-1}\sum_{i=1}^{N}\big(CN(x_i) - \bar{CN}\big)^2}$$
+  </div>
+
+  <p>Where $N$ is the number of pixels within the Area of Interest, computed at 5 km resolution with <code>bestEffort: true</code> to avoid timeouts for large areas.</p>
+
+  <h3>10.2 — Point Query Data Stack</h3>
+
+  <p>Clicking on the map samples 13 bands at a single point at 250 m resolution:</p>
+
+  <table class="var-table">
+    <thead><tr><th>#</th><th>Band</th><th>Description</th><th>Units</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><code>CN_average</code></td><td>CN for ARC II</td><td>—</td></tr>
+      <tr><td>2</td><td><code>CN_dry</code></td><td>CN for ARC I</td><td>—</td></tr>
+      <tr><td>3</td><td><code>CN_wet</code></td><td>CN for ARC III</td><td>—</td></tr>
+      <tr><td>4</td><td><code>CN_slope_adjusted</code></td><td>Sharpley-Williams corrected</td><td>—</td></tr>
+      <tr><td>5</td><td><code>CN_seasonal</code></td><td>NDVI-adjusted</td><td>—</td></tr>
+      <tr><td>6</td><td><code>HSG</code></td><td>Hydrologic Soil Group (1–4)</td><td>A/B/C/D</td></tr>
+      <tr><td>7</td><td><code>slope</code></td><td>Terrain slope</td><td>degrees</td></tr>
+      <tr><td>8</td><td><code>elev</code></td><td>Elevation</td><td>meters</td></tr>
+      <tr><td>9</td><td><code>NDVI</code></td><td>Vegetation index</td><td>—</td></tr>
+      <tr><td>10</td><td><code>flood_risk</code></td><td>Composite FRI</td><td>0–1</td></tr>
+      <tr><td>11</td><td><code>clay</code></td><td>Clay fraction</td><td>%</td></tr>
+      <tr><td>12</td><td><code>sand</code></td><td>Sand fraction</td><td>%</td></tr>
+      <tr><td>13</td><td><code>LC</code></td><td>Land cover class</td><td>WorldCover code</td></tr>
+    </tbody>
+  </table>
+
+  <h3>10.3 — Reference</h3>
+
+  <div class="note note-success">
+    <span class="icon">📚</span>
+    <div>
+      <strong>Primary Reference:</strong><br>
+      Jaafar, H.H., Ahmad, F.A. &amp; El Beyrouthy, N. (2019). GCN250, new global gridded curve numbers for hydrologic modeling and design. <em>Scientific Data</em>, 6, 145.<br>
+      DOI: <a href="https://doi.org/10.1038/s41597-019-0155-x" target="_blank">10.1038/s41597-019-0155-x</a>
+      <br><br>
+      <strong>SCS-CN Method:</strong><br>
+      USDA-NRCS (2004). National Engineering Handbook, Part 630 — Hydrology. Chapter 9: Hydrologic Soil-Cover Complexes. Chapter 10: Estimation of Direct Runoff from Storm Rainfall.
+      <br><br>
+      <strong>Slope Adjustment:</strong><br>
+      Sharpley, A.N. &amp; Williams, J.R. (1990). EPIC—Erosion/Productivity Impact Calculator. USDA Technical Bulletin No. 1768.
+    </div>
+  </div>
+
+</div><!-- end container sections -->
+
+</div><!-- end container -->
+
+<!-- ════════════ FOOTER ════════════ -->
+<div class="footer">
+  <p>
+    <strong>Sudan Hydrologic Curve Number Application</strong> — v4.2<br>
+    <a href="https://ee-osmangeomatics1993.projects.earthengine.app/view/sudan-hydrologic-curve-number-application" target="_blank">Launch App</a> ·
+    <a href="https://github.com/Osman-Geomatics93/Sudan-GCN-App" target="_blank">GitHub</a> ·
+    <a href="https://doi.org/10.1038/s41597-019-0155-x" target="_blank">GCN250 Paper</a>
+  </p>
+  <p style="margin-top: 8px;">Built with Google Earth Engine · Data: ESA, NASA, ISRIC, FAO, WorldPop</p>
+</div>
+
+</body>
+</html>

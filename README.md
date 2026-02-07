@@ -109,16 +109,23 @@ The app computes improved **SCS Curve Numbers** for any location in Sudan using 
 
 ## 🧮 Methodology
 
-### Curve Number Computation
+<div align="center">
 
-The application follows the **GCN250 framework** (Jaafar et al., 2019) with enhancements:
+[![Full Methodology](https://img.shields.io/badge/📐_Full_Equations_&_Methodology-023E8A?style=for-the-badge)](docs/METHODOLOGY.md)
+[![Interactive HTML](https://img.shields.io/badge/🔬_Interactive_Equations_(HTML)-0077B6?style=for-the-badge)](docs/Methodology_Equations.html)
+
+</div>
+
+The application follows the **GCN250 framework** (Jaafar et al., 2019) with slope and vegetation enhancements. The processing pipeline:
 
 ```
-1. Land Cover (WorldCover 10m) → USDA land use classes
-2. Soil Texture (SoilGrids clay/sand %) → Hydrologic Soil Groups (A/B/C/D)
-3. Land Use × HSG → USDA NEH-630 CN lookup table
-4. Slope Adjustment (Sharpley-Williams, 1990)
-5. NDVI Seasonal Correction (vegetation dynamics)
+ESA WorldCover (10m) ──→ USDA Land Use ──┐
+                                         ├──→ CN Lookup Table ──→ CN avg (ARC II) ──→ 5 CN Products
+SoilGrids (Clay/Sand%) ──→ HSG (A/B/C/D)┘                             │
+                                                          ┌────────────┼────────────┐
+                                                      CN Dry (I)  CN Wet (III)  CN Slope  CN Seasonal
+                                                                                   ↑          ↑
+                                                                              SRTM Slope  MODIS NDVI
 ```
 
 ### Five CN Products
@@ -131,20 +138,16 @@ The application follows the **GCN250 framework** (Jaafar et al., 2019) with enha
 | **CN Slope-Adjusted** | Terrain-corrected CN | Sharpley-Williams equation |
 | **CN Seasonal** | Vegetation-adjusted CN | NDVI-based reduction factor |
 
-### SCS-CN Runoff Equation
+### Core Equations
 
-```
-S = (25400 / CN) - 254
-Ia = 0.2 × S
-Q = (P - Ia)² / (P - Ia + S)    where P > Ia
-Q = 0                             where P ≤ Ia
-```
+| Equation | Formula | Description |
+|----------|---------|-------------|
+| **Retention** | `S = (25400 / CN) - 254` | Max soil water retention (mm) |
+| **Abstraction** | `Ia = 0.2 × S` | Initial abstraction before runoff |
+| **Runoff** | `Q = (P - Ia)² / (P - Ia + S)` | Direct surface runoff (P > Ia) |
+| **Flood Risk** | `FRI = 0.4×CN + 0.3×Slope_inv + 0.3×Pop` | Composite risk index (0–1) |
 
-### Flood Risk Index
-
-```
-Flood Risk = 0.4 × CN_normalized + 0.3 × Slope_inverse + 0.3 × Population_density
-```
+> **📐 19 equations fully documented** — See [METHODOLOGY.md](docs/METHODOLOGY.md) for complete derivations, variable tables, and CN lookup values, or view the [Interactive HTML version](docs/Methodology_Equations.html) with rendered LaTeX equations.
 
 ---
 
@@ -164,6 +167,8 @@ Sudan-GCN-App/
 │   └── Sudan_GCN_CodeEditor.js       # Code Editor version (with Export)
 │
 ├── docs/
+│   ├── METHODOLOGY.md                 # Full scientific methodology (19 equations)
+│   ├── Methodology_Equations.html     # Interactive HTML with LaTeX rendering
 │   └── Deployment_Guide.html         # How to publish as GEE App
 │
 ├── assets/
@@ -286,6 +291,8 @@ Enter a date (YYYY-MM-DD) → click "Fetch Rainfall & Compute Runoff"
 
 | Document | Description |
 |----------|-------------|
+| [Scientific Methodology](docs/METHODOLOGY.md) | Complete mathematical framework — 19 equations, CN lookup tables, all derivations |
+| [Interactive Equations (HTML)](docs/Methodology_Equations.html) | Beautiful rendered version with KaTeX LaTeX, flowcharts, and variable tables |
 | [Deployment Guide](docs/Deployment_Guide.html) | Step-by-step guide to publish as GEE App |
 
 ---
