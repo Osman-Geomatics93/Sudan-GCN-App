@@ -112,7 +112,7 @@ The app computes improved **SCS Curve Numbers** for any location in Sudan using 
 <div align="center">
 
 [![Full Methodology](https://img.shields.io/badge/📐_Full_Equations_&_Methodology-023E8A?style=for-the-badge)](docs/METHODOLOGY.md)
-[![Interactive HTML](https://img.shields.io/badge/🔬_Interactive_Equations_(HTML)-0077B6?style=for-the-badge)](docs/Methodology_Equations.html)
+[![Interactive HTML](https://img.shields.io/badge/🔬_Interactive_Equations_(HTML)-0077B6?style=for-the-badge)](https://osman-geomatics93.github.io/Sudan-GCN-App/docs/Methodology_Equations.html)
 
 </div>
 
@@ -147,7 +147,7 @@ SoilGrids (Clay/Sand%) ──→ HSG (A/B/C/D)┘                             �
 | **Runoff** | `Q = (P - Ia)² / (P - Ia + S)` | Direct surface runoff (P > Ia) |
 | **Flood Risk** | `FRI = 0.4×CN + 0.3×Slope_inv + 0.3×Pop` | Composite risk index (0–1) |
 
-> **📐 19 equations fully documented** — See [METHODOLOGY.md](docs/METHODOLOGY.md) for complete derivations, variable tables, and CN lookup values, or view the [Interactive HTML version](docs/Methodology_Equations.html) with rendered LaTeX equations.
+> **📐 19 equations fully documented** — See [METHODOLOGY.md](docs/METHODOLOGY.md) for complete derivations, variable tables, and CN lookup values, or view the [Interactive HTML version](https://osman-geomatics93.github.io/Sudan-GCN-App/docs/Methodology_Equations.html) with rendered LaTeX equations.
 
 ---
 
@@ -210,7 +210,7 @@ Just open the link — no setup needed:
 
 ### Option 3: Deploy Your Own App
 
-See the [Deployment Guide](docs/Deployment_Guide.html) for step-by-step instructions.
+See the [Deployment Guide](https://osman-geomatics93.github.io/Sudan-GCN-App/docs/Deployment_Guide.html) for step-by-step instructions.
 
 ---
 
@@ -292,8 +292,8 @@ Enter a date (YYYY-MM-DD) → click "Fetch Rainfall & Compute Runoff"
 | Document | Description |
 |----------|-------------|
 | [Scientific Methodology](docs/METHODOLOGY.md) | Complete mathematical framework — 19 equations, CN lookup tables, all derivations |
-| [Interactive Equations (HTML)](docs/Methodology_Equations.html) | Beautiful rendered version with KaTeX LaTeX, flowcharts, and variable tables |
-| [Deployment Guide](docs/Deployment_Guide.html) | Step-by-step guide to publish as GEE App |
+| [Interactive Equations (HTML)](https://osman-geomatics93.github.io/Sudan-GCN-App/docs/Methodology_Equations.html) | Beautiful rendered version with KaTeX LaTeX, flowcharts, and variable tables |
+| [Deployment Guide](https://osman-geomatics93.github.io/Sudan-GCN-App/docs/Deployment_Guide.html) | Step-by-step guide to publish as GEE App |
 
 ---
 
