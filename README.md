@@ -23,13 +23,13 @@
 
 ### 🎬 Application Demo
 
-<a href="https://github.com/Osman-Geomatics93/Sudan-GCN-App/raw/main/Vedio/CN.mp4">
+<a href="https://github.com/Osman-Geomatics93/Sudan-GCN-App/raw/main/Video/CN.mp4">
   <img src="https://img.shields.io/badge/▶_Watch_Full_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch Demo Video" width="280"/>
 </a>
 
 <br><br>
 
-https://github.com/Osman-Geomatics93/Sudan-GCN-App/raw/main/Vedio/CN.mp4
+https://github.com/Osman-Geomatics93/Sudan-GCN-App/raw/main/Video/CN.mp4
 
 <sub>📽 Interactive walkthrough — CN mapping, point queries, runoff calculation & data export</sub>
 
@@ -155,18 +155,24 @@ Sudan-GCN-App/
 ├── README.md                          # This file
 ├── LICENSE                            # MIT License
 ├── CHANGELOG.md                       # Version history
+├── CONTRIBUTING.md                    # Contribution guidelines
 ├── .gitignore                         # Git ignore rules
+├── .gitattributes                     # Git LFS config
 │
 ├── scripts/
 │   ├── Sudan_GCN_APP.js              # GEE App version (published)
 │   └── Sudan_GCN_CodeEditor.js       # Code Editor version (with Export)
 │
 ├── docs/
-│   ├── User_Guide.html               # Interactive user documentation
 │   └── Deployment_Guide.html         # How to publish as GEE App
 │
 ├── assets/
-│   └── (screenshots and thumbnails)
+│   ├── overview.png                   # App overview screenshot
+│   ├── Point Query.png                # Point query screenshot
+│   └── State Selection.png            # State selection screenshot
+│
+├── Video/
+│   └── CN.mp4                         # Application demo video (LFS)
 │
 └── .github/
     └── ISSUE_TEMPLATE.md             # Bug report / feature request template
@@ -280,7 +286,6 @@ Enter a date (YYYY-MM-DD) → click "Fetch Rainfall & Compute Runoff"
 
 | Document | Description |
 |----------|-------------|
-| [User Guide](docs/User_Guide.html) | Interactive guide with workflows, layer reference, CN lookup table |
 | [Deployment Guide](docs/Deployment_Guide.html) | Step-by-step guide to publish as GEE App |
 
 ---
@@ -294,7 +299,7 @@ If you use this application in your research, please cite:
   author    = {Osman},
   title     = {Sudan Hydrologic Curve Number Application},
   year      = {2025},
-  url       = {https://github.com/osmangeomatics1993/Sudan-GCN-App},
+  url       = {https://github.com/Osman-Geomatics93/Sudan-GCN-App},
   note      = {Based on GCN250 methodology by Jaafar et al. (2019)}
 }
 ```

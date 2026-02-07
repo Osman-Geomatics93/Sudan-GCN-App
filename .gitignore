@@ -12,17 +12,6 @@ Desktop.ini
 .project
 .settings/
 
-# Node (if any tooling is added later)
-node_modules/
-package-lock.json
-npm-debug.log
-
-# Python (if any tooling is added later)
-__pycache__/
-*.pyc
-.env
-.venv/
-
 # Temp files
 *.tmp
 *.bak
@@ -35,8 +24,6 @@ __pycache__/
 *.shx
 *.dbf
 *.prj
-*.geojson
-!assets/*.geojson
 
 # Compressed
 *.zip
@@ -45,6 +32,5 @@ __pycache__/
 
 # Credentials (never commit)
 *.json
-!package.json
-service-account-key.json
 credentials.json
+service-account-key.json

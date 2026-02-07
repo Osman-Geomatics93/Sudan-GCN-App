@@ -62,7 +62,7 @@
     Save to your repository (e.g., <code>users/osmangeomatics1993/</code>)
   </div>
   <div class="warn">
-    ⚠️ <strong>Important:</strong> Use the <code>Sudan_GCN_APP.js</code> file (NOT the <code>Sudan_GCN_v4_Modern.js</code>). The APP version has <code>print()</code> and <code>Export.image.toDrive()</code> removed because they don't work in GEE Apps.
+    ⚠️ <strong>Important:</strong> Use the <code>Sudan_GCN_APP.js</code> file (NOT the <code>Sudan_GCN_CodeEditor.js</code>). The APP version has <code>print()</code> and <code>Export.image.toDrive()</code> removed because they don't work in GEE Apps.
   </div>
 </div>
 
@@ -214,7 +214,7 @@
 <div class="changes">
   <h2>🔧 What Changed from Code Editor Version → App Version</h2>
   <table>
-    <tr><th>Feature</th><th>Code Editor (v4_Modern.js)</th><th>App (Sudan_GCN_APP.js)</th></tr>
+    <tr><th>Feature</th><th>Code Editor (Sudan_GCN_CodeEditor.js)</th><th>App (Sudan_GCN_APP.js)</th></tr>
     <tr><td><code>print()</code></td><td>Console messages</td><td>❌ Removed (not available in Apps). Welcome message shown in result panel instead.</td></tr>
     <tr><td><code>Export.image.toDrive()</code></td><td>5 export tasks to Google Drive</td><td>❌ Replaced with <code>getDownloadURL()</code> — generates direct download links for GeoTIFF files. User selects product + scale.</td></tr>
     <tr><td>Download</td><td>Tasks tab required</td><td>✅ Direct download link in the panel. User clicks link → browser downloads GeoTIFF.</td></tr>
@@ -224,7 +224,7 @@
 </div>
 
 <div style="margin-top:32px; padding:16px; background:#E3F2FD; border-left:4px solid #0077B6; font-size:14px;">
-  <strong>💡 Pro Tip:</strong> Keep both script versions. Use <code>Sudan_GCN_v4_Modern.js</code> for your own research (with Export to Drive), and <code>Sudan_GCN_APP.js</code> for the published App (with download links).
+  <strong>💡 Pro Tip:</strong> Keep both script versions. Use <code>Sudan_GCN_CodeEditor.js</code> for your own research (with Export to Drive), and <code>Sudan_GCN_APP.js</code> for the published App (with download links).
 </div>
 
 </div>
