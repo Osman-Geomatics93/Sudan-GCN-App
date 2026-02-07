@@ -19,10 +19,29 @@
 
 ---
 
+<div align="center">
+
+### 🎬 Application Demo
+
+<a href="https://github.com/Osman-Geomatics93/Sudan-GCN-App/raw/main/Vedio/CN.mp4">
+  <img src="https://img.shields.io/badge/▶_Watch_Full_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch Demo Video" width="280"/>
+</a>
+
+<br><br>
+
+https://github.com/Osman-Geomatics93/Sudan-GCN-App/raw/main/Vedio/CN.mp4
+
+<sub>📽 Interactive walkthrough — CN mapping, point queries, runoff calculation & data export</sub>
+
+</div>
+
+---
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
 - [Key Features](#-key-features)
+- [Demo Video](#-application-demo)
 - [Live Demo](#-live-demo)
 - [Data Sources](#-data-sources)
 - [Methodology](#-methodology)
@@ -69,6 +88,8 @@ The app computes improved **SCS Curve Numbers** for any location in Sudan using 
 **Launch the app now** — no login required:
 
 ### 🔗 [https://ee-osmangeomatics1993.projects.earthengine.app/view/sudan-hydrologic-curve-number-application](https://ee-osmangeomatics1993.projects.earthengine.app/view/sudan-hydrologic-curve-number-application)
+
+> 🎥 **New to the app?** Watch the [video walkthrough above](#-application-demo) to see it in action before you start.
 
 ---
 
