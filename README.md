@@ -243,13 +243,36 @@ Enter a date (YYYY-MM-DD) → click "Fetch Rainfall & Compute Runoff"
 
 ## 📸 Screenshots
 
-> Add screenshots of your app to the `assets/` folder and reference them here:
->
-> ```markdown
-> ![App Overview](assets/screenshot_overview.png)
-> ![Point Query](assets/screenshot_query.png)
-> ![State Selection](assets/screenshot_state.png)
-> ```
+<div align="center">
+
+<details open>
+<summary><b>🗺 App Overview — Hydrologic Soil Groups Layer</b></summary>
+<br>
+<img src="assets/overview.png" alt="App Overview — Hydrologic Soil Groups" width="90%"/>
+<br>
+<sub>Full Sudan view with Hydrologic Soil Groups (HSG) layer, legend, runoff calculator & satellite rainfall panel</sub>
+<br><br>
+</details>
+
+<details open>
+<summary><b>📌 Point Query — Interactive Map Click</b></summary>
+<br>
+<img src="assets/Point Query.png" alt="Point Query" width="90%"/>
+<br>
+<sub>Click anywhere to retrieve CN values, soil properties, elevation, slope, NDVI and administrative info</sub>
+<br><br>
+</details>
+
+<details open>
+<summary><b>🏛 State Selection — AOI by Administrative Boundary</b></summary>
+<br>
+<img src="assets/State Selection.png" alt="State Selection" width="90%"/>
+<br>
+<sub>Select any of Sudan's 18 states from the dropdown to focus analysis on a specific region</sub>
+<br><br>
+</details>
+
+</div>
 
 ---
 
