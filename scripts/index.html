@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudan GCN — Protected Scripts</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<style>
+  :root {
+    --primary: #023E8A;
+    --secondary: #0077B6;
+    --accent: #00B4D8;
+    --bg: #0F172A;
+    --card: #1E293B;
+    --text: #E2E8F0;
+    --muted: #94A3B8;
+    --border: #334155;
+    --success: #10B981;
+    --danger: #EF4444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #023E8A 0%, #0077B6 50%, #00B4D8 100%);
+    width: 100%; padding: 40px 24px; text-align: center;
+  }
+  .hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+  .hero p { font-size: 15px; opacity: 0.85; }
+
+  .container { max-width: 700px; width: 100%; padding: 40px 24px; }
+
+  .lock-card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 40px; text-align: center;
+  }
+  .lock-icon { font-size: 64px; margin-bottom: 16px; }
+  .lock-card h2 { font-size: 22px; margin-bottom: 8px; color: var(--accent); }
+  .lock-card p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+
+  .input-group { display: flex; gap: 12px; max-width: 400px; margin: 0 auto 16px; }
+  .input-group input {
+    flex: 1; padding: 14px 18px; font-size: 18px; letter-spacing: 8px;
+    text-align: center; font-weight: 700;
+    background: var(--bg); border: 2px solid var(--border); color: var(--text);
+    outline: none; transition: border 0.3s;
+    font-family: 'Fira Code', 'Courier New', monospace;
+  }
+  .input-group input:focus { border-color: var(--accent); }
+  .input-group input::placeholder { letter-spacing: 2px; font-size: 14px; font-weight: 400; }
+
+  .script-select { display: flex; gap: 12px; justify-content: center; margin-bottom: 24px; }
+  .script-btn {
+    padding: 12px 24px; font-size: 13px; font-weight: 700;
+    background: var(--bg); border: 2px solid var(--border); color: var(--muted);
+    cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .script-btn:hover { border-color: var(--accent); color: var(--text); }
+  .script-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,180,216,0.1); }
+
+  .unlock-btn {
+    padding: 14px 48px; font-size: 16px; font-weight: 700;
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    border: none; color: white; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 2px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .unlock-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,119,182,0.4); }
+  .unlock-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .status {
+    margin-top: 16px; font-size: 13px; min-height: 20px;
+    transition: color 0.3s;
+  }
+  .status.error { color: var(--danger); }
+  .status.success { color: var(--success); }
+  .status.loading { color: var(--accent); }
+
+  .code-container {
+    display: none; margin-top: 32px;
+    background: var(--card); border: 1px solid var(--border);
+  }
+  .code-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px; border-bottom: 1px solid var(--border);
+    background: rgba(0,180,216,0.05);
+  }
+  .code-header span { font-size: 13px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+  .code-actions { display: flex; gap: 8px; }
+  .code-actions button {
+    padding: 8px 16px; font-size: 12px; font-weight: 600;
+    background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .code-actions button:hover { border-color: var(--accent); color: var(--accent); }
+  .code-output {
+    padding: 20px; max-height: 500px; overflow: auto;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 12px; line-height: 1.6; white-space: pre;
+    color: #CBD5E1; tab-size: 2;
+  }
+
+  .footer {
+    margin-top: auto; padding: 24px; text-align: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .script-select { flex-direction: column; }
+    .input-group { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🔒 Protected Scripts</h1>
+  <p>Sudan Hydrologic Curve Number Application — Enter password to access source code</p>
+</div>
+
+<div class="container">
+  <div class="lock-card">
+    <div class="lock-icon">🔐</div>
+    <h2>Authentication Required</h2>
+    <p>These scripts are password-protected. Enter the access code to view and download.</p>
+
+    <div class="script-select">
+      <button class="script-btn active" onclick="selectScript('app')" id="btn-app">
+        📱 GEE App Version
+      </button>
+      <button class="script-btn" onclick="selectScript('editor')" id="btn-editor">
+        💻 Code Editor Version
+      </button>
+    </div>
+
+    <div class="input-group">
+      <input type="password" id="password" placeholder="Password" maxlength="20"
+             onkeydown="if(event.key==='Enter')unlock()">
+    </div>
+
+    <button class="unlock-btn" onclick="unlock()" id="unlockBtn">
+      🔓 Unlock Script
+    </button>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="code-container" id="codeContainer">
+    <div class="code-header">
+      <span id="codeTitle">Script</span>
+      <div class="code-actions">
+        <button onclick="copyCode()">📋 Copy</button>
+        <button onclick="downloadCode()">💾 Download .js</button>
+      </div>
+    </div>
+    <div class="code-output" id="codeOutput"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <a href="https://github.com/Osman-Geomatics93/Sudan-GCN-App">GitHub</a> ·
+  <a href="https://ee-osmangeomatics1993.projects.earthengine.app/view/sudan-hydrologic-curve-number-application">Launch App</a>
+  <br><br>
+  Sudan Hydrologic Curve Number Application — v4.2
+</div>
+
+<script>
+let selectedScript = 'app';
+let decryptedCode = '';
+
+const scripts = {
+  app: { file: 'Sudan_GCN_APP.js.enc', name: 'Sudan_GCN_APP.js', title: 'GEE App Version' },
+  editor: { file: 'Sudan_GCN_CodeEditor.js.enc', name: 'Sudan_GCN_CodeEditor.js', title: 'Code Editor Version' }
+};
+
+function selectScript(type) {
+  selectedScript = type;
+  document.querySelectorAll('.script-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + type).classList.add('active');
+  document.getElementById('codeContainer').style.display = 'none';
+  document.getElementById('status').textContent = '';
+  decryptedCode = '';
+}
+
+async function unlock() {
+  const password = document.getElementById('password').value;
+  const status = document.getElementById('status');
+  const btn = document.getElementById('unlockBtn');
+
+  if (!password) {
+    status.className = 'status error';
+    status.textContent = '⚠ Please enter the password';
+    return;
+  }
+
+  btn.disabled = true;
+  status.className = 'status loading';
+  status.textContent = '⏳ Fetching and decrypting...';
+
+  try {
+    const scriptInfo = scripts[selectedScript];
+    const basePath = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
+    const response = await fetch(basePath + scriptInfo.file);
+
+    if (!response.ok) {
+      // Try GitHub raw URL as fallback
+      const ghUrl = 'https://raw.githubusercontent.com/Osman-Geomatics93/Sudan-GCN-App/main/scripts/' + scriptInfo.file;
+      const ghResponse = await fetch(ghUrl);
+      if (!ghResponse.ok) throw new Error('Could not fetch encrypted file');
+      var encryptedBase64 = await ghResponse.text();
+    } else {
+      var encryptedBase64 = await response.text();
+    }
+
+    // CryptoJS-compatible decryption
+    const decrypted = CryptoJS.AES.decrypt(encryptedBase64, password);
+    const plaintext = decrypted.toString(CryptoJS.enc.Utf8);
+
+    if (!plaintext || plaintext.length < 100) {
+      throw new Error('wrong_password');
+    }
+
+    decryptedCode = plaintext;
+    document.getElementById('codeOutput').textContent = plaintext;
+    document.getElementById('codeTitle').textContent = '✅ ' + scriptInfo.title + ' — ' + scriptInfo.name;
+    document.getElementById('codeContainer').style.display = 'block';
+
+    status.className = 'status success';
+    status.textContent = '✅ Decrypted successfully! (' + plaintext.length.toLocaleString() + ' characters)';
+
+  } catch (e) {
+    if (e.message === 'wrong_password' || !e.message) {
+      status.className = 'status error';
+      status.textContent = '❌ Incorrect password. Please try again.';
+    } else {
+      status.className = 'status error';
+      status.textContent = '❌ Error: ' + e.message;
+    }
+    document.getElementById('codeContainer').style.display = 'none';
+  }
+
+  btn.disabled = false;
+}
+
+function copyCode() {
+  navigator.clipboard.writeText(decryptedCode).then(() => {
+    const status = document.getElementById('status');
+    status.className = 'status success';
+    status.textContent = '📋 Copied to clipboard!';
+  });
+}
+
+function downloadCode() {
+  const scriptInfo = scripts[selectedScript];
+  const blob = new Blob([decryptedCode], { type: 'application/javascript' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = scriptInfo.name;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>

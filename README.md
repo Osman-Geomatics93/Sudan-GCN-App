@@ -335,8 +335,9 @@ Sudan-GCN-App/
 ├── .gitattributes                     # Git LFS config
 │
 ├── scripts/
-│   ├── Sudan_GCN_APP.js              # GEE App version (published)
-│   └── Sudan_GCN_CodeEditor.js       # Code Editor version (with Export)
+│   ├── index.html                     # 🔒 Password-protected script viewer
+│   ├── Sudan_GCN_APP.js.enc          # Encrypted GEE App version
+│   └── Sudan_GCN_CodeEditor.js.enc   # Encrypted Code Editor version
 │
 ├── docs/
 │   ├── METHODOLOGY.md                 # Full scientific methodology (19 equations)
@@ -356,6 +357,8 @@ Sudan-GCN-App/
 ```
 
 ### Script Versions
+
+> 🔒 **Scripts are password-protected.** Access them via the [Protected Script Viewer](https://osman-geomatics93.github.io/Sudan-GCN-App/scripts/).
 
 | File | Use Case | Export Method |
 |------|----------|--------------|
@@ -384,10 +387,10 @@ Just open the link — no setup needed:
 
 ### Option 2: Run in GEE Code Editor
 
-1. Open [code.earthengine.google.com](https://code.earthengine.google.com)
-2. Create a new script
-3. Copy the contents of `scripts/Sudan_GCN_CodeEditor.js`
-4. Paste into the editor
+1. Open the [Protected Script Viewer](https://osman-geomatics93.github.io/Sudan-GCN-App/scripts/) and enter the password
+2. Select **Code Editor Version** and click **Unlock**
+3. Copy the decrypted script
+4. Paste into [code.earthengine.google.com](https://code.earthengine.google.com)
 5. Click **▶ Run**
 
 ### Option 3: Deploy Your Own App
