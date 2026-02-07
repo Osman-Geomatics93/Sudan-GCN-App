@@ -17,7 +17,11 @@
 
 </div>
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- DEMO VIDEO                                                  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 
 <div align="center">
 
@@ -35,26 +39,40 @@ https://github.com/Osman-Geomatics93/Sudan-GCN-App/raw/main/Video/CN.mp4
 
 </div>
 
----
+<br>
 
-## 📋 Table of Contents
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TABLE OF CONTENTS                                           -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 
-- [Overview](#-overview)
-- [Key Features](#-key-features)
-- [Demo Video](#-application-demo)
-- [Live Demo](#-live-demo)
-- [Data Sources](#-data-sources)
-- [Methodology](#-methodology)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-- [Usage Guide](#-usage-guide)
-- [Screenshots](#-screenshots)
-- [Documentation](#-documentation)
-- [Citation](#-citation)
-- [Contributing](#-contributing)
-- [License](#-license)
+<div align="center">
+<table>
+<tr>
+<td align="center"><a href="#-overview"><b>🔬 Overview</b></a></td>
+<td align="center"><a href="#-key-features"><b>✨ Features</b></a></td>
+<td align="center"><a href="#-live-demo"><b>🌍 Live Demo</b></a></td>
+<td align="center"><a href="#-data-sources"><b>📡 Data</b></a></td>
+<td align="center"><a href="#-methodology"><b>🧮 Methodology</b></a></td>
+</tr>
+<tr>
+<td align="center"><a href="#-getting-started"><b>🚀 Get Started</b></a></td>
+<td align="center"><a href="#-usage-guide"><b>📖 Usage</b></a></td>
+<td align="center"><a href="#-screenshots"><b>📸 Screenshots</b></a></td>
+<td align="center"><a href="#-documentation"><b>📚 Docs</b></a></td>
+<td align="center"><a href="#-citation"><b>📝 Citation</b></a></td>
+</tr>
+</table>
+</div>
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- OVERVIEW                                                    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/01-OVERVIEW-023E8A?style=for-the-badge" alt="Overview"/>
+</div>
 
 ## 🔬 Overview
 
@@ -66,7 +84,15 @@ The app computes improved **SCS Curve Numbers** for any location in Sudan using 
 - **Seasonal NDVI correction** for vegetation dynamics
 - **Real-time satellite rainfall** from NASA GPM IMERG
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- KEY FEATURES                                                -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/02-KEY_FEATURES-0077B6?style=for-the-badge" alt="Key Features"/>
+</div>
 
 ## ✨ Key Features
 
@@ -81,17 +107,37 @@ The app computes improved **SCS Curve Numbers** for any location in Sudan using 
 | 📈 **AOI Statistics** | Mean, StdDev, Min, Max for any selected area |
 | 💾 **Data Export** | Download GeoTIFF via link or export to Google Drive |
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- LIVE DEMO                                                   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/03-LIVE_DEMO-00B4D8?style=for-the-badge" alt="Live Demo"/>
+</div>
 
 ## 🌍 Live Demo
 
 **Launch the app now** — no login required:
 
+<div align="center">
+
 ### 🔗 [https://ee-osmangeomatics1993.projects.earthengine.app/view/sudan-hydrologic-curve-number-application](https://ee-osmangeomatics1993.projects.earthengine.app/view/sudan-hydrologic-curve-number-application)
+
+</div>
 
 > 🎥 **New to the app?** Watch the [video walkthrough above](#-application-demo) to see it in action before you start.
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- DATA SOURCES                                                -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/04-DATA_SOURCES-2A9D8F?style=for-the-badge" alt="Data Sources"/>
+</div>
 
 ## 📡 Data Sources
 
@@ -105,7 +151,15 @@ The app computes improved **SCS Curve Numbers** for any location in Sudan using 
 | WorldPop 2020 | 100 m | WorldPop | Population density |
 | FAO GAUL 2015 | Admin | FAO / UN | State & locality boundaries |
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- METHODOLOGY                                                 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/05-METHODOLOGY-E76F51?style=for-the-badge" alt="Methodology"/>
+</div>
 
 ## 🧮 Methodology
 
@@ -149,7 +203,15 @@ SoilGrids (Clay/Sand%) ──→ HSG (A/B/C/D)┘                             �
 
 > **📐 19 equations fully documented** — See [METHODOLOGY.md](docs/METHODOLOGY.md) for complete derivations, variable tables, and CN lookup values, or view the [Interactive HTML version](https://osman-geomatics93.github.io/Sudan-GCN-App/docs/Methodology_Equations.html) with rendered LaTeX equations.
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PROJECT STRUCTURE                                           -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/06-PROJECT_STRUCTURE-4361EE?style=for-the-badge" alt="Project Structure"/>
+</div>
 
 ## 📁 Project Structure
 
@@ -190,7 +252,15 @@ Sudan-GCN-App/
 | `Sudan_GCN_APP.js` | Published GEE App | `getDownloadURL()` + `Export.toDrive()` |
 | `Sudan_GCN_CodeEditor.js` | Personal research in Code Editor | `Export.toDrive()` + `print()` |
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- GETTING STARTED                                             -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/07-GETTING_STARTED-7209B7?style=for-the-badge" alt="Getting Started"/>
+</div>
 
 ## 🚀 Getting Started
 
@@ -212,7 +282,15 @@ Just open the link — no setup needed:
 
 See the [Deployment Guide](https://osman-geomatics93.github.io/Sudan-GCN-App/docs/Deployment_Guide.html) for step-by-step instructions.
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- USAGE GUIDE                                                 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/08-USAGE_GUIDE-F72585?style=for-the-badge" alt="Usage Guide"/>
+</div>
 
 ## 📖 Usage Guide
 
@@ -250,7 +328,15 @@ Enter a date (YYYY-MM-DD) → click "Fetch Rainfall & Compute Runoff"
 - **In App**: Select product + scale → "Generate Download Link" → click blue link
 - **In Code Editor**: "Export to Drive" → Tasks tab → click RUN
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCREENSHOTS                                                 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/09-SCREENSHOTS-3A0CA3?style=for-the-badge" alt="Screenshots"/>
+</div>
 
 ## 📸 Screenshots
 
@@ -285,7 +371,15 @@ Enter a date (YYYY-MM-DD) → click "Fetch Rainfall & Compute Runoff"
 
 </div>
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- DOCUMENTATION                                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/10-DOCUMENTATION-F4A261?style=for-the-badge" alt="Documentation"/>
+</div>
 
 ## 📚 Documentation
 
@@ -295,7 +389,15 @@ Enter a date (YYYY-MM-DD) → click "Fetch Rainfall & Compute Runoff"
 | [Interactive Equations (HTML)](https://osman-geomatics93.github.io/Sudan-GCN-App/docs/Methodology_Equations.html) | Beautiful rendered version with KaTeX LaTeX, flowcharts, and variable tables |
 | [Deployment Guide](https://osman-geomatics93.github.io/Sudan-GCN-App/docs/Deployment_Guide.html) | Step-by-step guide to publish as GEE App |
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CITATION                                                    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/11-CITATION-E9C46A?style=for-the-badge" alt="Citation"/>
+</div>
 
 ## 📝 Citation
 
@@ -326,7 +428,15 @@ And the underlying methodology:
 }
 ```
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CONTRIBUTING                                                -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/12-CONTRIBUTING-264653?style=for-the-badge" alt="Contributing"/>
+</div>
 
 ## 🤝 Contributing
 
@@ -338,13 +448,29 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 4. Push to the branch (`git push origin feature/new-analysis`)
 5. Open a Pull Request
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- LICENSE                                                      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/13-LICENSE-2A9D8F?style=for-the-badge" alt="License"/>
+</div>
 
 ## 📄 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
----
+<br>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- ACKNOWLEDGMENTS                                             -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div align="center">
+<img src="https://img.shields.io/badge/14-ACKNOWLEDGMENTS-023E8A?style=for-the-badge" alt="Acknowledgments"/>
+</div>
 
 ## 🙏 Acknowledgments
 
@@ -354,6 +480,8 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 - **FAO** — GAUL administrative boundaries
 - **Google** — Earth Engine platform
 - **Jaafar et al.** — GCN250 methodology
+
+<br>
 
 ---
 
